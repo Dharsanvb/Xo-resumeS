@@ -49,27 +49,30 @@ export const deleteResume = async (req, res) => {
 // Get user resume by id
 // DELETE : /api/resumes/get
 export const getResumeById = async (req, res) => {
-    try {
-        const userId = req.userId;
-        const { resumeId } = req.params;
+  try {
+    const { resumeId } = req.params;
+    const userId = req.userId; // may be undefined
 
+    const query = userId
+      ? { _id: resumeId, userId }
+      : { _id: resumeId };
 
-        const resume = await Resume.findOne({ userId, _id: resumeId })
+    const resume = await Resume.findOne(query);
 
-        if (!resume) {
-            return res.status(404).json({ message: 'Resume not found' })
-        }
-
-        resume.__v = undefined;
-        resume.createdAt = undefined;
-        resume.updatedAt = undefined;
-        return res.status(200).json({ resume })
-
-
-    } catch (error) {
-        return res.status(400).json({ message: error.message })
+    if (!resume) {
+      return res.status(404).json({ message: 'Resume not found' });
     }
-}
+
+    resume.__v = undefined;
+    resume.createdAt = undefined;
+    resume.updatedAt = undefined;
+
+    return res.status(200).json({ resume });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
 
 
 // Get resume by id public
