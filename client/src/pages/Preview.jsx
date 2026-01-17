@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { dummyResumeData } from '../assets/assets';
+// import { dummyResumeData } from '../assets/assets';
 import ResumePreview from '../Components/ResumePreview';
 import  Loader  from '../Components/Loader';
 import { ArrowLeftIcon } from 'lucide-react';
@@ -16,7 +16,7 @@ const Preview = () => {
 
   const loadResume = async () => {
     try {
-      const { data } = await api.get("/api/resumes/public/"+resumeId)
+      const { data } = await api.get('/api/resumes/public/'+resumeId)
       setResumeData(data.resume)
     } catch (error) {
       console.log(error.message); 
