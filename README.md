@@ -3,6 +3,8 @@
 
 XO-Resume is a modern **AI-powered resume builder** built using the **MERN stack**, designed to help users create professional resumes effortlessly with real-time updates, AI-enhanced content, and a clean, intuitive UI/UX.
 
+* Click here to view the live project -> https://xo-resume.vercel.app/
+
 ---
 
 ## 🌟 Key Highlights
